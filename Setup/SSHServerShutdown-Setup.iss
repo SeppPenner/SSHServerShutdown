@@ -6,6 +6,7 @@
 #define MyAppPublisher "Hämmer Electronics"
 #define MyAppURL "www.softwareload24.de.tl"
 #define MyAppExeName "SSHServerShutdown.exe"
+#define MyPath "F:\TODO\C# und VB\SSHServerShutdown\Öffentlich\SSHServerShutdown"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
@@ -24,10 +25,10 @@ AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
 DefaultDirName={pf}\{#MyAppName}
 DefaultGroupName={#MyAppName}
-LicenseFile=C:\Users\tim\Desktop\SSHServerShutdown\SSHServerShutdown\bin\Debug\License.txt
-OutputDir=C:\Users\tim\Desktop\SSHServerShutdown\Setup
+LicenseFile={#MyPath}\SSHServerShutdown\bin\Debug\License.txt
+OutputDir={#MyPath}\Setup
 OutputBaseFilename=SSHServerShutdown-Setup
-SetupIconFile=C:\Users\tim\Desktop\SSHServerShutdown\SSHServerShutdown\Shutdown.ico
+SetupIconFile={#MyPath}\SSHServerShutdown\Shutdown.ico
 Compression=lzma
 SolidCompression=yes
 
@@ -40,10 +41,10 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked; OnlyBelowVersion: 0,6.1
 
 [Files]
-Source: "C:\Users\tim\Desktop\SSHServerShutdown\SSHServerShutdown\bin\Debug\SSHServerShutdown.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\tim\Desktop\SSHServerShutdown\SSHServerShutdown\bin\Debug\Config.xml"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\tim\Desktop\SSHServerShutdown\SSHServerShutdown\bin\Debug\Renci.SshNet.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\tim\Desktop\SSHServerShutdown\SSHServerShutdown\bin\Debug\License.txt"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#MyPath}\SSHServerShutdown\bin\Debug\SSHServerShutdown.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#MyPath}\SSHServerShutdown\bin\Debug\Config.xml"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#MyPath}\SSHServerShutdown\bin\Debug\Renci.SshNet.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#MyPath}\SSHServerShutdown\bin\Debug\License.txt"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
