@@ -6,7 +6,7 @@
 #define MyAppPublisher "Hämmer Electronics"
 #define MyAppURL "www.softwareload24.de.tl"
 #define MyAppExeName "SSHServerShutdown.exe"
-#define MyPath "C:\Users\tim\Desktop\Updaten_Snyk\SSHServerShutdown\Öffentlich\SSHServerShutdown"
+#define MyPath "C:\Users\Tim\Documents\Git\C# und VB\SSHServerShutdown\Öffentlich\SSHServerShutdown"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
@@ -23,9 +23,9 @@ AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
-DefaultDirName={pf}\{#MyAppName}
+DefaultDirName={commonpf}\{#MyAppName}
 DefaultGroupName={#MyAppName}
-LicenseFile={#MyPath}\SSHServerShutdown\bin\Debug\License.txt
+LicenseFile={#MyPath}\SSHServerShutdown\bin\Release\License.txt
 OutputDir={#MyPath}\Setup
 OutputBaseFilename=SSHServerShutdown-Setup
 SetupIconFile={#MyPath}\SSHServerShutdown\Shutdown.ico
@@ -41,10 +41,10 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked; OnlyBelowVersion: 0,6.1
 
 [Files]
-Source: "{#MyPath}\SSHServerShutdown\bin\Debug\SSHServerShutdown.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyPath}\SSHServerShutdown\bin\Debug\Config.xml"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyPath}\SSHServerShutdown\bin\Debug\Renci.SshNet.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyPath}\SSHServerShutdown\bin\Debug\License.txt"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#MyPath}\SSHServerShutdown\bin\Release\SSHServerShutdown.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#MyPath}\SSHServerShutdown\bin\Release\Config.xml"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#MyPath}\SSHServerShutdown\bin\Release\Renci.SshNet.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#MyPath}\SSHServerShutdown\bin\Release\License.txt"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
