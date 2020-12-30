@@ -2,17 +2,16 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "SSHServerShutdown"
-#define MyAppVersion "1.0.1.0"
+#define MyAppVersion "1.0.2.0"
 #define MyAppPublisher "Hämmer Electronics"
 #define MyAppURL "www.softwareload24.de.tl"
 #define MyAppExeName "SSHServerShutdown.exe"
-#define MyPath "C:\Users\Tim\Documents\Git\C# und VB\SSHServerShutdown\Öffentlich\SSHServerShutdown"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
 ; Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-AppId={{8C0D96C1-4D3D-4D7C-9E69-73A910679CE0}
+AppId={{C6FC694A-A1FD-481C-B040-2FAB77B9C1D1}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 VersionInfoProductVersion={#MyAppVersion}
@@ -25,10 +24,10 @@ AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
 DefaultDirName={commonpf}\{#MyAppName}
 DefaultGroupName={#MyAppName}
-LicenseFile={#MyPath}\SSHServerShutdown\bin\Release\License.txt
-OutputDir={#MyPath}\Setup
+LicenseFile=..\src\SSHServerShutdown\License.txt
+OutputDir=..\Setup
 OutputBaseFilename=SSHServerShutdown-Setup
-SetupIconFile={#MyPath}\SSHServerShutdown\Shutdown.ico
+SetupIconFile=..\src\SSHServerShutdown\Shutdown.ico
 Compression=lzma
 SolidCompression=yes
 
@@ -41,10 +40,13 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked; OnlyBelowVersion: 0,6.1
 
 [Files]
-Source: "{#MyPath}\SSHServerShutdown\bin\Release\SSHServerShutdown.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyPath}\SSHServerShutdown\bin\Release\Config.xml"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyPath}\SSHServerShutdown\bin\Release\Renci.SshNet.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyPath}\SSHServerShutdown\bin\Release\License.txt"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\src\SSHServerShutdown\bin\Release\net5.0-windows\SSHServerShutdown.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\src\SSHServerShutdown\bin\Release\net5.0-windows\SSHServerShutdown.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\src\SSHServerShutdown\bin\Release\net5.0-windows\Config.xml"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\src\SSHServerShutdown\bin\Release\net5.0-windows\Renci.SshNet.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\src\SSHServerShutdown\bin\Release\net5.0-windows\License.txt"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\src\SSHServerShutdown\bin\Release\net5.0-windows\SshNet.Security.Cryptography.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\src\SSHServerShutdown\bin\Release\net5.0-windows\System.Xml.XPath.XmlDocument.dll"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]

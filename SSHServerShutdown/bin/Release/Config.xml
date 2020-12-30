@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<Config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <ServerName>202.202.202.202</ServerName>
-    <ServerPort>22</ServerPort>
-	<User>root</User>
-	<Password>HierKönnteDeinPasswortStehen</Password>
-</Config>
