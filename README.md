@@ -2,7 +2,6 @@ SSHServerShutdown
 ====================================
 
 SSHServerShutdown is an executable to shutdown your synology DiskStation.
-The executable was written and tested in .Net 5.0.
 
 [![Build status](https://ci.appveyor.com/api/projects/status/jpdco3w1t0xxi88e?svg=true)](https://ci.appveyor.com/project/SeppPenner/sshservershutdown)
 [![GitHub issues](https://img.shields.io/github/issues/SeppPenner/SSHServerShutdown.svg)](https://github.com/SeppPenner/SSHServerShutdown/issues)
