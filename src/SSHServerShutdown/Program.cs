@@ -29,7 +29,7 @@ namespace SSHServerShutdown
         {
             try
             {
-                var config = InitConfiguration(AppDomain.CurrentDomain.BaseDirectory + "Config.xml");
+                var config = InitConfiguration(AppDomain.CurrentDomain.BaseDirectory + "Config.xml") ?? new();
                 Console.WriteLine("Konfiguration geladen.");
 
                 using var client = new SshClient(config.ServerName, config.ServerPort, config.User, config.Password);
@@ -63,12 +63,12 @@ namespace SSHServerShutdown
         /// </summary>
         /// <param name="fileName">The file name.</param>
         /// <returns>The <see cref="Config"/>.</returns>
-        private static Config InitConfiguration(string fileName)
+        private static Config? InitConfiguration(string fileName)
         {
             try
             {
                 var xDocument = XDocument.Load(fileName);
-                return CreateObjectsFromString<Config>(xDocument);
+                return CreateObjectsFromString<Config?>(xDocument);
             }
             catch (Exception ex)
             {
@@ -83,10 +83,10 @@ namespace SSHServerShutdown
         /// <typeparam name="T">The type parameter.</typeparam>
         /// <param name="xDocument">The X document.</param>
         /// <returns>A object of type <see cref="T"/>.</returns>
-        private static T CreateObjectsFromString<T>(XDocument xDocument)
+        private static T? CreateObjectsFromString<T>(XDocument xDocument)
         {
             var xmlSerializer = new XmlSerializer(typeof(T));
-            return (T)xmlSerializer.Deserialize(new StringReader(xDocument.ToString()));
+            return (T?)xmlSerializer.Deserialize(new StringReader(xDocument.ToString()));
         }
     }
 }

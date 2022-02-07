@@ -20,7 +20,7 @@ namespace SSHServerShutdown
         /// <summary>
         /// Gets or sets the server name.
         /// </summary>
-        public string ServerName { get; set; }
+        public string ServerName { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the server name.
@@ -30,11 +30,11 @@ namespace SSHServerShutdown
         /// <summary>
         /// Gets or sets the user.
         /// </summary>
-        public string User { get; set; }
+        public string User { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the password.
         /// </summary>
-        public string Password { get; set; }
+        public string Password { get; set; } = string.Empty;
     }
 }
