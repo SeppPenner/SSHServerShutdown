@@ -47,7 +47,7 @@ dotnet build src/SSHServerShutdown.sln -c Release
 There are no tests, so there is nothing to run with `dotnet test`. A behaviour change is verified
 by starting the published executable and looking at the console output, not by a test run.
 
-- Single target framework `net9.0-windows` in the single project, no multi-targeting.
+- Single target framework `net10.0-windows` in the single project, no multi-targeting.
   `RuntimeIdentifiers` is `win-x64`.
 - All build properties live directly in `SSHServerShutdown.csproj`. There is **no**
   `Directory.Build.props` in this repository.
