@@ -48,7 +48,10 @@ There are no tests, so there is nothing to run with `dotnet test`. A behaviour c
 by starting the published executable and looking at the console output, not by a test run.
 
 - Single target framework `net10.0-windows` in the single project, no multi-targeting.
-  `RuntimeIdentifiers` is `win-x64`.
+  `RuntimeIdentifiers` is `win-x64` and the publish in `Setup/build-setup-files.bat` is self
+  contained, so the target machine needs no installed .NET runtime. Check that with the
+  published `SSHServerShutdown.runtimeconfig.json`: it has to list `includedFrameworks`, a
+  `framework` block means the publish fell back to framework dependent.
 - All build properties live directly in `SSHServerShutdown.csproj`. There is **no**
   `Directory.Build.props` in this repository.
 - `TreatWarningsAsErrors` is enabled, so every warning breaks the build, NuGet warnings (`NU****`)
