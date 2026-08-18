@@ -13,6 +13,13 @@ SSHServerShutdown is an executable to shutdown your synology DiskStation.
 [![Patreon](https://img.shields.io/badge/Patreon-F96854?logo=patreon&logoColor=white)](https://patreon.com/SeppPennerOpenSourceDevelopment)
 [![PayPal](https://img.shields.io/badge/PayPal-00457C?logo=paypal&logoColor=white)](https://paypal.me/th070795)
 
+Download
+--------
+
+The installer is attached to each
+[release](https://github.com/SeppPenner/SSHServerShutdown/releases). Releases up to 1.0.7 are
+only available from the repository history.
+
 Change history
 --------------
 

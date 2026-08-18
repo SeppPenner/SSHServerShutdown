@@ -30,10 +30,11 @@ Layout inside `src/SSHServerShutdown`:
   root, and the one the installer shows as its license.
 - `Shutdown.ico`: the `ApplicationIcon` and the `SetupIconFile` of the installer.
 
-`Setup` holds the installer: `SSHServerShutdown-Setup.iss` (Inno Setup 6),
-`build-setup-files.bat` (cleans `bin` and `obj`, publishes, deletes the `*.pdb`) and the built
-`SSHServerShutdown-Setup.exe`. The batch file only publishes, it does not compile the installer,
-that step runs separately with `ISCC.exe`.
+`Setup` holds the installer sources: `SSHServerShutdown-Setup.iss` (Inno Setup 6) and
+`build-setup-files.bat` (cleans `bin` and `obj`, publishes self contained, deletes the `*.pdb`,
+checks the credentials in `Config.xml`). The batch file only publishes, it does not compile the
+installer, that step runs separately with `ISCC.exe`. The built `SSHServerShutdown-Setup.exe` is
+**not** tracked, it is attached to the GitHub release of the matching tag.
 
 Repository root: `README.md` (the only user documentation), `Changelog.md`, `License.txt` (MIT),
 `.gitattributes` and `.gitignore`. There is no `Updating.md` and no `HowToUse.md`.
@@ -116,9 +117,15 @@ Do not silently "clean up" these, they are existing behaviour:
   `StringReader` into the `XmlSerializer`. Loading the file directly into the serializer would do
   the same job, the detour also drops the XML declaration, which does not matter because a .NET
   string is already UTF-16.
-- **The installer is tracked although `.gitignore` excludes `*.exe`.**
-  `Setup/SSHServerShutdown-Setup.exe` is in the repository and every release adds a new copy of it
-  to the history. It only gets in with `git add -f`.
+- **The installer does not belong in the repository.** `Setup/SSHServerShutdown-Setup.exe` is
+  covered by the `*.exe` rule in `.gitignore` and it stays that way. It is uploaded as an asset of
+  the GitHub release for its tag. Up to and including version 1.0.8 it was committed with
+  `git add -f`, so those copies are still in the history and cannot be removed without rewriting
+  published history. Never bring that back with another `git add -f`.
+- **`build-setup-files.bat` refuses to build with real credentials.** The published `Config.xml`
+  goes straight into the installer, so the script checks that it still holds the placeholder
+  server `202.202.202.202` and the placeholder password. If not it deletes `bin\publish` and exits
+  with 1. When the placeholder values are ever changed, that check has to be changed with them.
 - **The `.iss` file is UTF-8 with BOM on purpose.** Inno Setup 6 reads a script as UTF-8 only
   when a BOM is present, otherwise it falls back to the system code page and turns the umlaut in
   the publisher name into mojibake. Keep the BOM when editing that file.
@@ -143,9 +150,15 @@ Do not silently "clean up" these, they are existing behaviour:
    tags are lightweight tags, create new ones the same way. The tag has to exist **before** the
    installer is built, otherwise GitVersion burns a prerelease version such as
    `1.0.8-1+Branch.master.Sha...` into the shipped executable.
-6. Run `Setup/build-setup-files.bat` and then `ISCC.exe Setup/SSHServerShutdown-Setup.iss`.
-7. `git add -f Setup/SSHServerShutdown-Setup.exe` and commit the installer.
-8. Push the commits and the tag.
+6. Push the commit and the tag.
+7. Run `Setup/build-setup-files.bat` and then `ISCC.exe Setup/SSHServerShutdown-Setup.iss`. The
+   batch file aborts if `Config.xml` carries anything but the placeholder credentials.
+8. Create the GitHub release for the tag and attach `Setup/SSHServerShutdown-Setup.exe` to it. Do
+   **not** commit the installer. `gh` is not installed on this machine, so this runs against the
+   REST API. The token comes from the Windows Credential Manager, the same one `git push` uses:
+   feed `git credential fill` with protocol and host and read the `password` line back. Then
+   `POST /repos/SeppPenner/SSHServerShutdown/releases` for the release and a second call against
+   `uploads.github.com` for the asset. `scripts/github_release.ps1` does both.
 
 The version in `Changelog.md` has four parts (`1.0.8.0`), the tag has three (`1.0.8`).
 
