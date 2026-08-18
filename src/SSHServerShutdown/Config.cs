@@ -21,7 +21,7 @@ public class Config
     public string ServerName { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets or sets the server name.
+    /// Gets or sets the server port.
     /// </summary>
     public int ServerPort { get; set; }
 

@@ -11,7 +11,7 @@ NuGet package: no `GeneratePackageOnBuild`, no push script.
 
 One solution `src/SSHServerShutdown.sln` with exactly one project:
 
-- `src/SSHServerShutdown/SSHServerShutdown.csproj`, `OutputType` `WinExe`, the whole application.
+- `src/SSHServerShutdown/SSHServerShutdown.csproj`, `OutputType` `Exe`, the whole application.
 
 There is no test project, no `.github` folder, no pipeline file and no `Directory.Build.props`.
 
@@ -116,6 +116,9 @@ Do not silently "clean up" these, they are existing behaviour:
 - **The installer is tracked although `.gitignore` excludes `*.exe`.**
   `Setup/SSHServerShutdown-Setup.exe` is in the repository and every release adds a new copy of it
   to the history. It only gets in with `git add -f`.
+- **The `.iss` file is UTF-8 with BOM on purpose.** Inno Setup 6 reads a script as UTF-8 only
+  when a BOM is present, otherwise it falls back to the system code page and turns the umlaut in
+  the publisher name into mojibake. Keep the BOM when editing that file.
 - **`.gitattributes` sets `* text=auto`**, every rule of the Visual Studio template below it is
   commented out. A binary file that must not be normalized needs its own rule.
 - **AppVeyor badge without CI in the repository.** `README.md` links an AppVeyor build that is
@@ -131,7 +134,7 @@ Do not silently "clean up" these, they are existing behaviour:
 2. Add an entry at the top of `Changelog.md` in the existing format:
    `* **Version 1.0.8.0 (2026-08-18)** : Short description.`
 3. Set `MyAppVersion` in `Setup/SSHServerShutdown-Setup.iss` to the same four part version, keeping
-   the line endings and the encoding of that file.
+   the BOM and the CRLF line endings of that file.
 4. Commit that.
 5. Tag the commit with the plain version number, no `v` prefix (`1.0.8`, `1.0.7`, ...). The existing
    tags are lightweight tags, create new ones the same way. The tag has to exist **before** the
